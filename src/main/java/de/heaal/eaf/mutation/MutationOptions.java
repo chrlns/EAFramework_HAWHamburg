@@ -33,7 +33,7 @@ import java.util.Map;
  * @author Christian Lins <christian.lins@haw-hamburg.de>
  */
 public class MutationOptions {
-    public static enum KEYS {
+    public enum KEYS {
         FEATURE_INDEX,
         MUTATION_PROBABILITY
     }
