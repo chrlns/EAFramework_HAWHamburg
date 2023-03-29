@@ -40,6 +40,7 @@ import java.util.function.Function;
 public class TestHillClimbing {
     public static void main(String[] args) {
         run2DSphereFuncWithStats(20);
+        //runAckleyFuncWithStats(5);
     }
 
     private static void runAckleyFuncWithStats(int numOfRuns) {

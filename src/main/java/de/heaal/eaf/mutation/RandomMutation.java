@@ -60,7 +60,8 @@ public class RandomMutation implements Mutation {
         
         int dim = min.length;
         int i = opt.get(MutationOptions.KEYS.FEATURE_INDEX, rng.nextInt(dim));
-        ind.getGenome().array()[i] = rng.nextFloat() * (max[i] - min[i]) + min[i];
+        ind.getGenome().array()[i] += rng.nextFloat() * (0.2) - 0.1;  //Funktioniert so nicht, läuft ins unendliche
+        //ind.getGenome().array()[i] = rng.nextFloat() * (max[i] - min[i]) + min[i];
     }
     
 }
