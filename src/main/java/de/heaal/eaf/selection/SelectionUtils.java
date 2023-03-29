@@ -46,7 +46,7 @@ public class SelectionUtils {
      * @param avoid
      * @return 
      */
-    public static Individual selectNormal(Population population, Random rng, Individual avoid) {
+    public static Individual selectNormal(Population<?> population, Random rng, Individual avoid) {
         Individual selected = null;
         
         do {
@@ -60,7 +60,7 @@ public class SelectionUtils {
         return selected;
     }
     
-    public static Individual selectUniform(Population population, Random rng, Individual[] avoid) {
+    public static Individual selectUniform(Population<?> population, Random rng, Individual[] avoid) {
         Individual selected = null;
         do {
             selected = population.get(rng.nextInt(population.size()));

@@ -51,7 +51,7 @@ public class Population<T extends Individual> implements Iterable<T> {
      * @param num 
      */
     public Population(IndividualFactory<T> iFak, int num) {
-        individuals = (List<T>) Stream.generate(() -> iFak.create())
+        individuals = Stream.generate(() -> iFak.create())
                             .limit(num)
                             .collect(Collectors.toList());
     }
@@ -74,8 +74,8 @@ public class Population<T extends Individual> implements Iterable<T> {
         return individuals.get(idx);
     }
     
-    public <T> T get(int idx, Class<T> clazz) {
-        return (T)get(idx);
+    public T get(int idx, Class<T> clazz) {
+        return get(idx);
     }
     
     /**

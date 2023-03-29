@@ -30,7 +30,7 @@ package de.heaal.eaf.base;
  * @author Christian Lins <christian.lins@haw-hamburg.de>
  * @param <T>
  */
-public class GenericIndividualFactory<T> extends AbstractIndividualFactory<AbstractIndividual> {
+public class GenericIndividualFactory<T extends GenericIndividual> extends AbstractIndividualFactory<T> {
 
     protected float[] min, max;
     
@@ -50,8 +50,8 @@ public class GenericIndividualFactory<T> extends AbstractIndividualFactory<Abstr
     }
     
     @Override
-    public GenericIndividual create() {
-        return new GenericIndividual(createRandomGenome());
+    public T create() {
+        return (T) new GenericIndividual(createRandomGenome());
     }
     
     protected VecN createRandomGenome() {

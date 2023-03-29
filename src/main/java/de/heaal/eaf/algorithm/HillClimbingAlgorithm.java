@@ -30,7 +30,7 @@ import de.heaal.eaf.evaluation.ComparatorIndividual;
 import de.heaal.eaf.base.Individual;
 import de.heaal.eaf.base.IndividualFactory;
 import de.heaal.eaf.mutation.Mutation;
-import de.heaal.eaf.mutation.MutationOptions;
+// import de.heaal.eaf.mutation.MutationOptions;
 import java.util.Comparator;
 
 /**
@@ -38,9 +38,9 @@ import java.util.Comparator;
  * 
  * @author Christian Lins <christian.lins@haw-hamburg.de>
  */
-public class HillClimbingAlgorithm extends Algorithm {
+public class HillClimbingAlgorithm extends Algorithm<Particle> {
 
-    private final IndividualFactory indFac;
+    private final IndividualFactory<Particle> indFac;
     private final ComparatorIndividual terminationCriterion;
     
     public HillClimbingAlgorithm(float[] min, float[] max, 
@@ -48,7 +48,7 @@ public class HillClimbingAlgorithm extends Algorithm {
             ComparatorIndividual terminationCriterion) 
     {
         super(comparator, mutator);
-        this.indFac = new GenericIndividualFactory(min, max);
+        this.indFac = new GenericIndividualFactory<Particle>(min, max);
         this.terminationCriterion = terminationCriterion;
     }
     

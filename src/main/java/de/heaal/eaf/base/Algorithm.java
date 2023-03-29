@@ -40,7 +40,7 @@ import java.util.Random;
  */
 public abstract class Algorithm<T extends Individual> {
     
-    protected Comparator<T> comparator;
+    protected Comparator<Individual> comparator;
     protected Mutation mutator;
     protected Population<T> population;
     protected Random rng;
@@ -49,19 +49,19 @@ public abstract class Algorithm<T extends Individual> {
         this.rng = rng;
     }
     
-    public Algorithm(Random rng, Comparator<T> comparator) {
+    public Algorithm(Random rng, Comparator<Individual> comparator) {
         this(comparator, null, rng);
     }
     
-    public Algorithm(Comparator<T> comparator, Mutation mutator) {
+    public Algorithm(Comparator<Individual> comparator, Mutation mutator) {
         this(comparator, mutator, new Random());
     }
     
-    public Algorithm(Comparator<T> comparator, Mutation mutator, long seed) {
+    public Algorithm(Comparator<Individual> comparator, Mutation mutator, long seed) {
         this(comparator, mutator, new Random(seed));
     }
     
-    public Algorithm(Comparator<T> comparator, Mutation mutator, Random rng) {
+    public Algorithm(Comparator<Individual> comparator, Mutation mutator, Random rng) {
         this.rng = rng;
         this.comparator = comparator;
         this.mutator = mutator;
@@ -70,13 +70,13 @@ public abstract class Algorithm<T extends Individual> {
             mutator.setRandom(rng);
     }
     
-    protected void createPopulation(IndividualFactory iFak, int num) {
+    protected void createPopulation(IndividualFactory<T> iFak, int num) {
         population = new Population<>(iFak, num);
     }
     
     protected abstract boolean isTerminationCondition();
     
-    protected void initialize(IndividualFactory iFak, int numIndividuals) {
+    protected void initialize(IndividualFactory<T> iFak, int numIndividuals) {
         createPopulation(iFak, numIndividuals);
     }
     

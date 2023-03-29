@@ -40,7 +40,7 @@ public abstract class AbstractIndividualFactory<T extends Individual> implements
         this.rng = rng;
     }
     
-    public <T> T create(Class<T> clazz) {
-        return (T)create();
+    public T create(Class<T> clazz) {
+        return create();
     }
 }

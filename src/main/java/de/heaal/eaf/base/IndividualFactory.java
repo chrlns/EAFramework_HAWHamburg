@@ -35,5 +35,5 @@ import java.util.Random;
 public interface IndividualFactory<T extends Individual> {
     void setRandom(Random rng);
     
-    Individual create();
+    T create();
 }
