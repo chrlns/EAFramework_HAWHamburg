@@ -28,9 +28,8 @@ package de.heaal.eaf.base;
  * A generic individual factory that can be used in various EA algorithms.
  * 
  * @author Christian Lins <christian.lins@haw-hamburg.de>
- * @param <T>
  */
-public class GenericIndividualFactory<T extends GenericIndividual> extends AbstractIndividualFactory<T> {
+public class GenericIndividualFactory extends AbstractIndividualFactory {
 
     protected float[] min, max;
     
@@ -50,8 +49,8 @@ public class GenericIndividualFactory<T extends GenericIndividual> extends Abstr
     }
     
     @Override
-    public T create() {
-        return (T) new GenericIndividual(createRandomGenome());
+    public GenericIndividual create() {
+        return new GenericIndividual(createRandomGenome());
     }
     
     protected VecN createRandomGenome() {
