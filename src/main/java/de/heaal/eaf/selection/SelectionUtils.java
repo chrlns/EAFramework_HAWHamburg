@@ -26,6 +26,8 @@ package de.heaal.eaf.selection;
 
 import de.heaal.eaf.base.Individual;
 import de.heaal.eaf.base.Population;
+
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -46,7 +48,7 @@ public class SelectionUtils {
      * @param avoid
      * @return 
      */
-    public static Individual selectNormal(Population population, Random rng, Individual avoid) {
+    public static Individual selectNormal(Population population, Random rng, List<Individual> avoid) {
         Individual selected = null;
         
         do {
@@ -55,7 +57,7 @@ public class SelectionUtils {
                 p--;
             }
             selected = population.get(p);
-        } while (selected == avoid);
+        } while (contains(avoid, selected));
         
         return selected;
     }
@@ -67,7 +69,18 @@ public class SelectionUtils {
         } while (contains(avoid, selected));
         return selected;
     }
-    
+
+    private static boolean contains(List<Individual> list, Object element) {
+        if (list == null)
+            return false;
+
+        for (Object obj : list) {
+            if (obj.equals(element))
+                return true;
+        }
+        return false;
+    }
+
     private static boolean contains(Object[] array, Object element) {
         if (array == null)
             return false;
