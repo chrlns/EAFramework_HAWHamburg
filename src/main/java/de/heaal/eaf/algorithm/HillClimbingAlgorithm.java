@@ -96,13 +96,14 @@ public class HillClimbingAlgorithm extends Algorithm {
 
         // While not(termination criterion)
         // Compute the fitness f(x0) of x0
-        while (!isTerminationCondition()) {
+        // while (!isTerminationCondition()) {
+        while (numOfGens < 1000) {
             numOfGens++;
             nextGeneration();
-//            System.out.println(population.get(0).getCache());
+            System.out.println(population.get(0).getCache());
         }
 
-        System.out.printf("\n%.10f,%d", population.get(0).getCache(), numOfGens);
+        // System.out.printf("\n%.10f,%d", population.get(0).getCache(), numOfGens);
     }
 
 }

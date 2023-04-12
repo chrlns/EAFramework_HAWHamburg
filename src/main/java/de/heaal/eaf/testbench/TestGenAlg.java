@@ -3,8 +3,11 @@ package de.heaal.eaf.testbench;
 import de.heaal.eaf.algorithm.GenAlg;
 import de.heaal.eaf.algorithm.HillClimbingAlgorithm;
 import de.heaal.eaf.base.Individual;
+import de.heaal.eaf.crossover.AverageCombination;
+import de.heaal.eaf.crossover.SinglePointCrossover;
 import de.heaal.eaf.evaluation.ComparatorIndividual;
 import de.heaal.eaf.evaluation.MinimizeFunctionComparator;
+import de.heaal.eaf.mutation.MutationScope;
 import de.heaal.eaf.mutation.RandomMutation;
 
 import java.util.Comparator;
@@ -13,10 +16,13 @@ import java.util.function.Function;
 public class TestGenAlg {
 
     public static void main(String[] args) {
-        double res = ackley20Dims(new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f});
+        // runAckleyWithStats(10);
 
-        System.out.println(res);
+        runAckley();
+        //double res = ackley20Dims(new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+        //        0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f});
+
+        //System.out.println(res);
     }
 
     private static void runAckley() {
@@ -30,9 +36,27 @@ public class TestGenAlg {
 
         Comparator comparator = new MinimizeFunctionComparator(evalAckleyFunc);
 
-        var algo = new GenAlg(min, max,
-                comparator, new RandomMutation(min, max), new ComparatorIndividual(0.0000001f),0.1f, 1000);
-        algo.run();
+        var algoHC = new HillClimbingAlgorithm(min, max,
+                comparator, new RandomMutation(min, max),
+                new ComparatorIndividual(0.0000001f));
+
+        var algoGA = new GenAlg(min, max,
+                comparator,
+                new RandomMutation(min, max),
+                new AverageCombination(),
+                new ComparatorIndividual(1.000f),
+                0.15f,
+                2000,
+                4,
+                MutationScope.CHILDS_PARENTS);
+
+        algoHC.run();
+    }
+
+    public static void runAckleyWithStats(int numOfRuns) {
+        for (int i = 0; i < numOfRuns; i++) {
+            runAckley();
+        }
     }
 
     public static float ackley20Dims(float[] x) {

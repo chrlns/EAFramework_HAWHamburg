@@ -40,7 +40,11 @@ import java.util.Random;
 public class SinglePointCrossover<T extends Individual> implements Combination<T> {
 
     protected Random rng;
-    
+
+    public SinglePointCrossover() {
+        this.rng = new Random();
+    }
+
     @Override
     public void setRandom(Random rng) {
         this.rng = rng;
