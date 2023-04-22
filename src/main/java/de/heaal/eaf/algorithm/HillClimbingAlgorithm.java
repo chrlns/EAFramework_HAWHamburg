@@ -24,13 +24,12 @@
 
 package de.heaal.eaf.algorithm;
 
-import de.heaal.eaf.base.GenericIndividualFactory;
 import de.heaal.eaf.base.Algorithm;
 import de.heaal.eaf.evaluation.ComparatorIndividual;
 import de.heaal.eaf.base.Individual;
 import de.heaal.eaf.base.IndividualFactory;
 import de.heaal.eaf.mutation.Mutation;
-import de.heaal.eaf.mutation.MutationOptions;
+// import de.heaal.eaf.mutation.MutationOptions;
 import java.util.Comparator;
 
 /**
@@ -48,7 +47,7 @@ public class HillClimbingAlgorithm extends Algorithm {
             ComparatorIndividual terminationCriterion) 
     {
         super(comparator, mutator);
-        this.indFac = new GenericIndividualFactory(min, max);
+        this.indFac = new ParticleFactory(min, max);
         this.terminationCriterion = terminationCriterion;
     }
     

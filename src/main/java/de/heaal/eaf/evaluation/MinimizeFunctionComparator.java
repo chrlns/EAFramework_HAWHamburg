@@ -33,9 +33,8 @@ import java.util.function.Function;
  * while minimizing a function value.
  * 
  * @author Christian Lins <christian.lins@haw-hamburg.de>
- * @param <T>
  */
-public class MinimizeFunctionComparator<T extends Individual> implements Comparator<T> {
+public class MinimizeFunctionComparator implements Comparator<Individual> {
 
     private final Function<Individual,Float> evaluator;
     
