@@ -36,32 +36,31 @@ import java.util.Random;
  objects but create new ones for every new run of an algorithm.
  * 
  * @author Christian Lins <christian.lins@haw-hamburg.de>
- * @param <T>
  */
-public abstract class Algorithm<T extends Individual> {
+public abstract class Algorithm {
     
-    protected Comparator<T> comparator;
+    protected Comparator<Individual> comparator;
     protected Mutation mutator;
-    protected Population<T> population;
+    protected Population population;
     protected Random rng;
     
     public Algorithm(Random rng) {
         this.rng = rng;
     }
     
-    public Algorithm(Random rng, Comparator<T> comparator) {
+    public Algorithm(Random rng, Comparator<Individual> comparator) {
         this(comparator, null, rng);
     }
     
-    public Algorithm(Comparator<T> comparator, Mutation mutator) {
+    public Algorithm(Comparator<Individual> comparator, Mutation mutator) {
         this(comparator, mutator, new Random());
     }
     
-    public Algorithm(Comparator<T> comparator, Mutation mutator, long seed) {
+    public Algorithm(Comparator<Individual> comparator, Mutation mutator, long seed) {
         this(comparator, mutator, new Random(seed));
     }
     
-    public Algorithm(Comparator<T> comparator, Mutation mutator, Random rng) {
+    public Algorithm(Comparator<Individual> comparator, Mutation mutator, Random rng) {
         this.rng = rng;
         this.comparator = comparator;
         this.mutator = mutator;
@@ -71,7 +70,7 @@ public abstract class Algorithm<T extends Individual> {
     }
     
     protected void createPopulation(IndividualFactory iFak, int num) {
-        population = new Population<>(iFak, num);
+        population = new Population(iFak, num);
     }
     
     protected abstract boolean isTerminationCondition();

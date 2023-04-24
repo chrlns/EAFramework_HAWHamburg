@@ -32,11 +32,10 @@ import java.util.Random;
  * to create a child.
  * 
  * @author Christian Lins <christian.lins@haw-hamburg.de>
- * @param <T>
  */
-public interface Combination<T extends Individual> {
+public interface Combination {
     
     void setRandom(Random rng);
     
-    T combine(Individual[] parents);
+    Individual combine(Individual[] parents);
 }
