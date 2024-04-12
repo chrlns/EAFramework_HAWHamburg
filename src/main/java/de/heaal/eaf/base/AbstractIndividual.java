@@ -1,7 +1,7 @@
 /*
  * Evolutionary Algorithms Framework
  *
- * Copyright (c) 2023 Christian Lins <christian.lins@haw-hamburg.de>
+ * Copyright (c) 2023-2024 Christian Lins <christian.lins@haw-hamburg.de>
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,9 @@ package de.heaal.eaf.base;
 
 /**
  * An abstract class representing an individual (solution candidate).
+ * The class has a caching mechanism to store already computed fitness values for 
+ * later access. Every time the individual is mutated the cache must be cleared
+ * using clearCache().
  * 
  * @author Christian Lins <christian.lins@haw-hamburg.de>
  */
@@ -54,6 +57,10 @@ public abstract class AbstractIndividual implements Individual {
         cache = value;
     }
 
+    /**
+     * Returns the cached fitness value. One should check if this
+     * value is valid using hasCache().
+     */
     @Override
     public float getCache() {
         return cache;
